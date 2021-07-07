@@ -12,6 +12,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     hero.setImage(rightFacingImg)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestOpen, function (sprite, location) {
+    game.over(false)
+})
 let hero: Sprite = null
 let leftFacingImg: Image = null
 let rightFacingImg: Image = null
@@ -92,7 +95,8 @@ controller.moveSprite(hero, 100, 0)
 tiles.setTilemap(tilemap`level1`)
 scene.cameraFollowSprite(hero)
 tiles.placeOnTile(hero, tiles.getTileLocation(14, 30))
-hero.ay = 350
+hero.ay = 650
+effects.confetti.startScreenEffect()
 game.onUpdate(function () {
     if (hero.isHittingTile(CollisionDirection.Right) && hero.vy > 0) {
         hero.ay = 0
